@@ -32,6 +32,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import android.content.pm.PackageManager
+import android.widget.Gallery
 import androidx.core.app.ActivityCompat.startActivityForResult
 
 
@@ -131,12 +132,20 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                 .withPermission(
                     Manifest.permission.READ_EXTERNAL_STORAGE,
                 ).withListener(object: PermissionListener {
-                    override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                        Toast.makeText(
+                    override fun onPermissionGranted(report: PermissionGrantedResponse?) {
+                        report?.let {
+                            val galleryIntent = Intent(
+                                Intent.ACTION_PICK,
+                                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                            )
+                            startForResultToLoadImage.launch(galleryIntent)
+                        }
+
+                    /*    Toast.makeText(
                             this@AddUpdateDishActivity,
                             "You have the Gallery permission now to select image.",
                             Toast.LENGTH_SHORT
-                        ).show()
+                        ).show()*/
                     }
 
                     override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
