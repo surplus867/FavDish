@@ -215,8 +215,8 @@
                     android:id="@+id/et_direction_to_cook"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:gravity="top"
                     android:inputType="text"
                     android:textColor="@color/grey_900"
@@ -226,6 +226,7 @@
 
 
             <Button
+                android:id="@+id/btn_add_dish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
